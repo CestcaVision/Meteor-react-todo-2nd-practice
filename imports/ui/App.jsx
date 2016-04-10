@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import ReactDOM from 'react-dom'
 import { Tasks } from '../api/tasks.js';
+import { Meteor } from 'meteor/meteor'
 
 import Task from './Task.jsx';
 
@@ -11,12 +12,7 @@ class App extends Component {
 
     // Find the text field via the React ref
     const text = ReactDOM.findDOMNode(this.refs.newtask).value.trim();
-
-    Tasks.insert({
-      text,
-      createdAt: new Date(), // current time
-    });
-
+    Meteor.call('tasks.insert', text);
     // Clear form
     ReactDOM.findDOMNode(this.refs.newtask).value = '';
   }
@@ -39,6 +35,7 @@ class App extends Component {
     </div>
 }
 }
+
 App.propTypes = {
   tasks: PropTypes.array.isRequired,
 };

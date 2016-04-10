@@ -1,12 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-
 export default class Task extends Component {
+
   render(){
-    return <li>
-      {this.props.task.text}
+    return
+    <li>
+      <span>{this.props.task.text}</span>
     </li>
   }
-}
-Task.propTypes = {
-  task: PropTypes.object.isRequired
 }
